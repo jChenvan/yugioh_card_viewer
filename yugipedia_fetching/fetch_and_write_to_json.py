@@ -36,7 +36,7 @@ def fetch_cards(last_retrieved:str|None=None):
 
     return response.json()
 
-if __name__ == '__main__':
+def main():
     retrieval_date = RetrievalDate()
 
     cards = fetch_cards(last_retrieved=retrieval_date.get())
@@ -46,4 +46,6 @@ if __name__ == '__main__':
             json.dump(cards,f, indent=2)
 
         retrieval_date.set_to_today()
-    
+
+if __name__ == '__main__':
+    main()
