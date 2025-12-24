@@ -1,3 +1,4 @@
 yugipedia_fetching/cards.json
 yugipedia_fetching/last_retrieval_date.txt 
 node_modules
+database.db
