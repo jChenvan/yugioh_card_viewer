@@ -47,6 +47,15 @@ app.post('/login', (req,res)=>{
     res.json({ message: 'success.', user: req.session.user });
 });
 
+app.post('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ error: err });
+    }
+    res.json({ message: 'success.' });
+  });
+});
+
 app.listen(8080, ()=>{
     console.log("Server running on port 8080.")
 });
