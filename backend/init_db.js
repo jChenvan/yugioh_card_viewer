@@ -37,6 +37,28 @@ const create_monster_class_table = db.prepare(`
     )
     `);
 
+const create_user_table = db.prepare(`
+    CREATE TABLE IF NOT EXISTS user (
+        id INTEGER PRIMARY KEY,
+        username TEXT NOT NULL,
+        password TEXT NOT NULL
+    )
+    `)
+
+const create_favorites_table = db.prepare(`
+    CREATE TABLE IF NOT EXISTS favorite (
+        user_id INTEGER
+            REFERENCES user(id)
+            ON DELETE CASCADE,
+        card_id INTEGER
+            REFERENCES card(id)
+            ON DELETE CASCADE,
+        PRIMARY KEY (user_id, card_id)
+    )
+    `)
+
 create_card_table.run();
 create_monster_table.run();
 create_monster_class_table.run();
+create_user_table.run();
+create_favorites_table.run();
