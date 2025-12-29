@@ -2,3 +2,6 @@ cards.json
 last_retrieval_date.txt 
 node_modules
 database.db
+database.db-shm
+database.db-wal
+.env
