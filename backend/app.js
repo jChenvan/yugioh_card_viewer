@@ -30,6 +30,23 @@ app.post('/signup', (req,res)=>{
     }
 });
 
+app.post('/login', (req,res)=>{
+    const {username, password} = req.body;
+
+    const user = DatabaseMethods.findUser(username);
+
+    if (!user || !bcrypt.compareSync(password, user.password)) {
+        return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    req.session.user = {
+        id: user.id,
+        username: user.username
+    };
+
+    res.json({ message: 'success.', user: req.session.user });
+});
+
 app.listen(8080, ()=>{
     console.log("Server running on port 8080.")
 });
